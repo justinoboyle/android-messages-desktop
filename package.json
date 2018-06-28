@@ -1,0 +1,14 @@
+{
+  "name": "android-messages-desktop",
+  "version": "0.1.0",
+  "main": "main.js",
+  "productName": "Android Messages",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager --icon icon.icns ."
+  },
+  "devDependencies": {
+    "electron": "^2.0.3",
+    "electron-packager": "^12.1.0"
+  }
+}
