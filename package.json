@@ -5,7 +5,7 @@
   "productName": "Android Messages",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager --icon icon.icns ."
+    "build": "electron-packager --out build --all --icon icon.icns ."
   },
   "devDependencies": {
     "electron": "^2.0.3",

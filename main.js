@@ -1,16 +1,19 @@
 const {
     app,
-    BrowserWindow
+    BrowserWindow,
+    Tray,
+    nativeImage
 } = require('electron')
 
 const path = require('path')
 
 let win
+let tray
 
 let UNREAD = 0
 
 function createWindow() {
-
+    tray = new Tray(nativeImage.createFromDataURL(__dirname, 'icon.png'))
     win = new BrowserWindow({
         width: 1200,
         height: 800,
@@ -34,6 +37,7 @@ function createWindow() {
         updateUnread()
         win.setTitle("Android Messages")
     })
+    tray.on('click', () => toggleWindow())
 }
 
 function updateUnread() {
@@ -51,6 +55,13 @@ function getUnreadFromTitle(title) {
     }
 }
 
+function toggleWindow() {
+    if(win.isVisible())
+        win.hide()
+    else
+        win.show()
+}
+
 app.on('ready', createWindow)
 
 // Quit when all windows are closed.
@@ -62,4 +73,6 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
     if (win === null)
         createWindow()
+    else
+        win.show()
 })
